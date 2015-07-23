@@ -1,0 +1,34 @@
+<html>
+<head>
+
+    <title>Baseline coffee status interface</title>
+
+    <!-- This is where the magic happens, don't remove it! -->
+    <script type="text/javascript" language="javascript" src="Helper/Helper.nocache.js"></script>
+
+    <script>
+        function getRefreshInterval() {
+            // Refresh every 5 seconds
+            return 5000;
+        }
+
+        // TODO - Fill this in with something more interesting
+        function updateView(lastBrewed, cupsRemaining, carafePresent) {
+            alert("Last brewed: " + lastBrewed + ", cups remaining: " + cupsRemaining + ", carafe present: " + carafePresent);
+        }
+
+        // TODO - Alert boxes are annoying, handle this more gracefully
+        function serverError(message) {
+            if(message == null) {
+                alert("Unknown server error");
+            }
+            else {
+                alert("Server error: " + message);
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+</html>

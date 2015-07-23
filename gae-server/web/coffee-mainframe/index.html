@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <title>CG Coffee Monitor</title>
+
+  <!-- This is where the magic happens, don't remove it! -->
+  <script type="text/javascript" language="javascript" src="../Helper/Helper.nocache.js"></script>
+</head>
+
+<body>
+
+<div class="logo"></div>
+<div class="pending">contacting coffee mainframe...</div>
+<div class="wrapper">
+  <div class="number">12</div>
+  <div class="cups-left">cups left</div>
+  <div class="last-refilled">refilled recently</div>
+</div>
+<div class="sad-coffee-wrapper">
+  <div class="sad-coffee"></div>
+  <div class="sad-coffee-text">no coffee pot detected</div>
+</div>
+    
+<script>
+  function getRefreshInterval() {
+    // Refresh every 3 seconds
+    return 3000;
+  }
+
+  function serverError(message) {
+    // Do nothing
+  }
+
+  // TODO - Fill this in with something more interesting
+  function updateView(lastBrewed, cupsRemaining, carafePresent) {
+    $(".pending").hide();
+    
+    if (carafePresent) {
+      $(".number").html(cupsRemaining);
+
+      if (lastBrewed == -1)
+        $(".last-refilled").html("(coffee may be old)")
+      else {
+        var msAgo = new Date().getTime() - lastBrewed;
+        var secondsAgo = msAgo / 1000;
+        var minutesAgo = Math.round(secondsAgo / 60);
+        $(".last-refilled").html("refilled " + minutesAgo + " minutes ago")
+      }
+
+      $(".sad-coffee-wrapper").hide();
+      $(".wrapper").show();
+    }
+    else {
+      $(".wrapper").hide();
+      $(".sad-coffee-wrapper").show();
+    }
+  }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+*,
+*:before,
+*:after {
+  @include box-sizing(border-box);
+}
+
+html,
+body {
+  background-color: $offwhite;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+

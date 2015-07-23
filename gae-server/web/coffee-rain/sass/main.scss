@@ -1,0 +1,31 @@
+@import '../components/bourbon/bourbon';
+@import 'variables';
+@import 'base';
+
+#canvas {
+  background-color: $offwhite;
+  display: block;
+}
+
+header {
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.8);
+  -moz-box-shadow:    0px 5px 15px 0px rgba(50, 50, 50, 0.8);
+  box-shadow:         0px 5px 15px 0px rgba(50, 50, 50, 0.8);
+  background-color: $dark;
+  position: absolute;
+  padding: 30px;
+  top: 5%;
+  left: 5%;
+  width: 200px;
+
+  h1 {
+    color: $pencil;
+  }
+
+  p, a {
+    color: $offblue;
+  }
+}
+
+#credit {
+}

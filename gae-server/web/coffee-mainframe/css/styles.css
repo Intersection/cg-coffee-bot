@@ -1,0 +1,111 @@
+@font-face {
+    font-family: DIN Condensed Bold;
+    src: url("../fonts/din-condensed-bold.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal; 
+}
+
+
+body {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  background-color: #61abd6;
+  color: white;
+  font-family: DIN Condensed Bold;
+}
+
+.logo {
+  width: 163px;
+  height: 232px;
+  background-image: url(../img/logo.png);
+  background-size: 100% 100%;
+  position: absolute; 
+  top: 40px;
+  left: 60px;
+}
+
+
+.pending {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  left: 0%;
+  text-align: center;
+  color: white;
+  font-size: 50px;
+}
+
+
+.wrapper {
+  width: 580px;
+  height: 215px;
+  position: absolute;
+  top: 50%;
+  margin-top: -107px;
+  left: 50%;
+  margin-left: -290px;
+  display: none;
+}
+
+.sad-coffee-wrapper {
+  width: 379px;
+  height: 420px;
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  margin-left: -188px;
+  margin-top: -210px;
+  display: none;
+}
+
+.sad-coffee {
+  width: 379px;
+  height: 345px;
+  background-image: url(../img/sad-coffee.png);
+  background-size: 100% 100%;
+  position: absolute; 
+  top: 0%;
+  left: 50%;
+  margin-left: -140px;
+}
+
+.sad-coffee-text {
+  font-size: 50px;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+}
+
+.number {
+  font-size: 300px;
+  height: 215px;
+  line-height: 300px;
+  text-align: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.cups-left {
+  position: absolute;
+  font-size: 62px;
+  width: 200px;
+  right: 0px;
+  bottom: 15px;
+  text-align: right;
+}
+
+.last-refilled {
+  position: absolute;
+  font-size: 20px;
+  width: 200px;
+  text-align: right;
+  right: 0px;
+  bottom: 0px;
+}
