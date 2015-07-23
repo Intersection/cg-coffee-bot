@@ -31,9 +31,11 @@ public class CoffeeSystem {
         HeartbeatGenerator heartbeatGenerator = null;
 
         try {
+            // Get an instance of the USB scale object and start it
             usbScale = injector.getInstance(UsbScale.class);
             usbScale.start();
 
+            // Get an instance of the heartbeat generator and start it
             heartbeatGenerator = injector.getInstance(HeartbeatGenerator.class);
             heartbeatGenerator.start();
 
@@ -136,6 +138,7 @@ public class CoffeeSystem {
     private static boolean configurationValueExists(String header, String name) {
         TypeSafePropertyFetcher typeSafePropertyFetcher = new TypeSafePropertyFetcher();
 
+        // Return true if a value exists for the property with the given header and name
         return typeSafePropertyFetcher.getValue(header, name) != null;
     }
 }
