@@ -4,7 +4,7 @@ Monitor your coffee pot with Google App Engine, send e-mail/Slack/Twitter notifi
 
 ## What you need
 
-  - [Google App Engine account](https://cloud.google.com/appengine/)
+  - [Google App Engine](https://cloud.google.com/appengine/) account
   - [Dymo M25 digital postage scale](http://www.dymo.com/en-US/m25lb-digital-postal-scale) - Shop around, they go for much less than MSRP
   - [Raspberry Pi](https://www.raspberrypi.org) or other small computer that can be left running 24/7 in close proximity to the coffee pot and scal
   - A coffee pot
