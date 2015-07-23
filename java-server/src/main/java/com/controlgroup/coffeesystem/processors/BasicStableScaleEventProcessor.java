@@ -17,6 +17,7 @@ import java.io.IOException;
  * Created by timmattison on 12/29/14.
  */
 public class BasicStableScaleEventProcessor implements StableScaleEventProcessor {
+    public static final long UNKNOWN = -1;
     private final Logger logger = LoggerFactory.getLogger(BasicStableScaleEventProcessor.class);
     private final EventBus eventBus;
     private final int emptyCarafeInGrams;
@@ -24,9 +25,7 @@ public class BasicStableScaleEventProcessor implements StableScaleEventProcessor
     private final int gramsPerCup;
     private final int toleranceInGrams;
     private final int cupToleranceForFull;
-
     private StableScaleReadEvent lastStableScaleReadEvent;
-    public static final long UNKNOWN = -1;
     private long lastBrewed = UNKNOWN;
 
     @Inject

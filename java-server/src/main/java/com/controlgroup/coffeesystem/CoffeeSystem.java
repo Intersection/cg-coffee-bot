@@ -19,11 +19,10 @@ import javax.usb.UsbException;
  * Created by timmattison on 12/29/14.
  */
 public class CoffeeSystem {
-    private static final Logger logger = LoggerFactory.getLogger(CoffeeSystem.class);
-    private static boolean debug = false;
-
     public static final String X_GIT_BRANCH = "X-Git-Branch";
     public static final String UNKNOWN_BRANCH = "UNKNOWN BRANCH";
+    private static final Logger logger = LoggerFactory.getLogger(CoffeeSystem.class);
+    private static boolean debug = false;
 
     public static void main(String[] args) throws UsbException, ScaleNotFoundException {
         showVersionInformation();

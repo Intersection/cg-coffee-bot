@@ -17,18 +17,16 @@ import java.util.List;
 public class BasicScaleEventProcessor implements ScaleEventProcessor {
     private final EventBus eventBus;
     private final StableScaleReadEventFactory stableScaleReadEventFactory;
-    private List<ScaleReadEvent> scaleReadEvents = new ArrayList<ScaleReadEvent>();
-    private long lastScaleReadEventTimestamp;
-
     /**
      * If we get no events for this many milliseconds just throw our buffer away
      */
     private final long maxThreshold;
-
     /**
      * The number of identical reads required
      */
     private final int identicalReadsRequired;
+    private List<ScaleReadEvent> scaleReadEvents = new ArrayList<ScaleReadEvent>();
+    private long lastScaleReadEventTimestamp;
 
     @Inject
     public BasicScaleEventProcessor(EventBus eventBus,

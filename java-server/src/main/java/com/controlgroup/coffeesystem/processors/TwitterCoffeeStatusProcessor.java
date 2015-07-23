@@ -16,14 +16,14 @@ import twitter4j.conf.ConfigurationBuilder;
  * Created by timmattison on 12/29/14.
  */
 public class TwitterCoffeeStatusProcessor extends AbstractCoffeeStatusProcessor {
-    private final PropertyFetcher propertyFetcher;
-    private final TweetGenerator tweetGenerator;
-    private final Logger logger = LoggerFactory.getLogger(AbstractCoffeeStatusProcessor.class);
     public static final String HEADER = "Twitter";
     public static final String OAUTH_CONSUMER_KEY = "oauth_consumer_key";
     public static final String OAUTH_CONSUMER_SECRET = "oauth_consumer_secret";
     public static final String OAUTH_ACCESS_TOKEN = "oauth_access_token";
     public static final String OAUTH_ACCESS_TOKEN_SECRET = "oauth_access_token_secret";
+    private final PropertyFetcher propertyFetcher;
+    private final TweetGenerator tweetGenerator;
+    private final Logger logger = LoggerFactory.getLogger(AbstractCoffeeStatusProcessor.class);
 
     @Inject
     public TwitterCoffeeStatusProcessor(PropertyFetcher propertyFetcher, TweetGenerator tweetGenerator) {

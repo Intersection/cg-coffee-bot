@@ -18,10 +18,9 @@ import static org.mockito.Mockito.when;
  */
 public class HmacSha1MessageSignerTest {
     public static final String KEY = "KEY";
-    private HmacSha1MessageSigner messageSigner;
-
     private static final String data1 = "This is a test";
     private static final String hashedData1 = "edd11ad8f60ba32e5116ff439a429a6482150be6";
+    private HmacSha1MessageSigner messageSigner;
 
     @Before
     public void setup() {

@@ -22,12 +22,12 @@ import static org.mockito.Mockito.*;
 public class BasicScaleEventProcessorTest {
     public static final long FAKE_TIMESTAMP = 1000000000L;
     private static final int FAKE_GRAMS = 500;
+    private static final long maxThreshold = 1000;
+    private static final int identicalReadsRequired = 4;
     private BasicScaleEventProcessor basicScaleEventProcessor;
     private EventBus mockEventBus;
     private StableScaleReadEventFactory mockStableScaleReadEventFactory;
     private StableScaleReadEvent mockStableScaleReadEvent;
-    private static final long maxThreshold = 1000;
-    private static final int identicalReadsRequired = 4;
 
     @Before
     public void setup() {

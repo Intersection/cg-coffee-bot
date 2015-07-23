@@ -35,17 +35,16 @@ public abstract class AbstractPostingCoffeeStatusProcessorTest {
     public static final int DEFAULT_STATUS_CODE = 200;
     public static final int SERVER_FAILURE_STATUS_CODE = 500;
     public static final String SIGNATURE = "SIGNATURE";
-    private AbstractPostingCoffeeStatusProcessor coffeeStatusProcessor;
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
     protected HttpClientFactory mockHttpClientFactory;
     protected MessageSigner mockMessageSigner;
     protected HttpClient mockHttpClient;
     protected PropertyFetcher mockPropertyFetcher;
     protected HttpResponse mockHttpResponse;
+    private AbstractPostingCoffeeStatusProcessor coffeeStatusProcessor;
 
     public abstract AbstractPostingCoffeeStatusProcessor getCoffeeStatusProcessor();
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setup() throws IOException, SignatureException {

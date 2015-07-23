@@ -26,21 +26,18 @@ import static org.mockito.Mockito.*;
  */
 public class BasicStableScaleEventProcessorTest {
     public static final long FAKE_TIMESTAMP = 1000000000L;
-    private BasicStableScaleEventProcessor basicStableScaleEventProcessor;
-    private EventBus mockEventBus;
-
     private static final int emptyCarafeInGrams = 1000;
     private static final int fullCarafeInGrams = 5000;
     private static final int gramsPerCup = 250;
     private static final int toleranceInGrams = 100;
     private static final int cupToleranceForFull = 2;
     private static final int cupsPerCarafe = (fullCarafeInGrams - emptyCarafeInGrams) / gramsPerCup;
-
-    private int coffeeBrewedEventCount = 0;
-    private int coffeeStatusCount = 0;
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+    private BasicStableScaleEventProcessor basicStableScaleEventProcessor;
+    private EventBus mockEventBus;
+    private int coffeeBrewedEventCount = 0;
+    private int coffeeStatusCount = 0;
 
     @Before
     public void setup() {

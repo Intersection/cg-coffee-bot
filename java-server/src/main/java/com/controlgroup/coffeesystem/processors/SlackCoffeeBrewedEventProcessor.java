@@ -22,12 +22,12 @@ import java.util.Map;
  * Created by timmattison on 12/29/14.
  */
 public class SlackCoffeeBrewedEventProcessor {
+    public static final String HEADER = "Slack";
+    public static final String WEBHOOK_URL = "webhookUrl";
     private final Logger logger = LoggerFactory.getLogger(SlackCoffeeBrewedEventProcessor.class);
     private final PropertyFetcher propertyFetcher;
     private final EmailGenerator emailGenerator;
     private final HttpClientFactory httpClientFactory;
-    public static final String HEADER = "Slack";
-    public static final String WEBHOOK_URL = "webhookUrl";
 
     @Inject
     protected SlackCoffeeBrewedEventProcessor(PropertyFetcher propertyFetcher, EmailGenerator emailGenerator, HttpClientFactory httpClientFactory) {

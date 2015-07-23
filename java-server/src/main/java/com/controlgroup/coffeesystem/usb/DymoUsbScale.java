@@ -17,7 +17,6 @@ import javax.usb.*;
  * Created by timmattison on 12/29/14.
  */
 public class DymoUsbScale implements UsbScale {
-    private final Logger logger = LoggerFactory.getLogger(DymoUsbScale.class);
     private static final short VENDOR_ID = 0x0922;
     private static final short PRODUCT_ID = (short) 0x8004;
     private static final byte USB_INTERFACE_NUMBER = (byte) 0;
@@ -30,7 +29,7 @@ public class DymoUsbScale implements UsbScale {
     private static final int LOWER_BYTE = 4;
     private static final int UPPER_BYTE = 5;
     private static final int DATA_MODE_BYTE = 2;
-
+    private final Logger logger = LoggerFactory.getLogger(DymoUsbScale.class);
     private final EventBus eventBus;
     private final UsbDeviceLocator usbDeviceLocator;
     private final ScaleReadEventFactory scaleReadEventFactory;

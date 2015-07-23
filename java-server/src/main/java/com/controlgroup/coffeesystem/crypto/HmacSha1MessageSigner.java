@@ -8,10 +8,10 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.SignatureException;
 
 public class HmacSha1MessageSigner implements MessageSigner {
-    private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
     public static final String SECURITY = "security";
     public static final String HMAC = "hmac";
     public static final String SECURITY_HMAC_DEFAULT = "CHANGEME";
+    private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
     private final PropertyFetcher propertyFetcher;
 
     public HmacSha1MessageSigner(PropertyFetcher propertyFetcher) {

@@ -20,13 +20,13 @@ import java.util.Properties;
  * Created by timmattison on 12/29/14.
  */
 public class GMailCoffeeBrewedEventProcessor {
-    private final Logger logger = LoggerFactory.getLogger(GMailCoffeeBrewedEventProcessor.class);
-    private final PropertyFetcher propertyFetcher;
-    private final EmailGenerator emailGenerator;
     public static final String HEADER = "Gmail";
     public static final String PASSWORD_NAME = "password";
     public static final String RECIPIENT_NAME = "recipient";
     public static final String SOURCE_NAME = "source";
+    private final Logger logger = LoggerFactory.getLogger(GMailCoffeeBrewedEventProcessor.class);
+    private final PropertyFetcher propertyFetcher;
+    private final EmailGenerator emailGenerator;
 
     @Inject
     protected GMailCoffeeBrewedEventProcessor(PropertyFetcher propertyFetcher, EmailGenerator emailGenerator) {
