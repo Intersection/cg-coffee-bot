@@ -57,3 +57,21 @@ See `Helper.html` for an implementation that simply displays alert boxes when it
 ```
 
 For field definitions see the `Helper library` section.
+
+### Server modules
+
+Want to post your coffee updates to Tumblr?  Flash your Philips Hue lights when a fresh pot is brewed?  You can do whatever you want by creating a Java class that implements either or both of these methods:
+
+``` Java
+    @Subscribe
+    public synchronized void coffeeBrewedEvent(CoffeeBrewedEvent coffeeBrewedEvent) throws MessagingException, IOException;
+```
+
+``` Java
+    @Override
+    protected synchronized void handle(CoffeeStatus coffeeStatus) throws Exception;
+```
+
+For an example see `com.controlgroup.coffeesystem.processors.SlackCoffeeBrewedEventProcessor` or `com.controlgroup.coffeesystem.processors.TwitterCoffeeStatusProcessor` and the associated wiring code in `com.controlgroup.coffeesystem.CoffeeSystem`.
+
+Did you implement a cool module that you think that a lot of people would use?  Tell us about it by submitting a pull request!
