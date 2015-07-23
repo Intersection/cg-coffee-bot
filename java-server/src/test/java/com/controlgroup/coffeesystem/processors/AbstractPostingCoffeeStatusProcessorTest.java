@@ -1,6 +1,7 @@
 package com.controlgroup.coffeesystem.processors;
 
 import com.controlgroup.coffeesystem.CoffeeStatus;
+import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.crypto.MessageSigner;
 import com.controlgroup.coffeesystem.events.HeartbeatEvent;
@@ -39,7 +40,7 @@ public abstract class AbstractPostingCoffeeStatusProcessorTest {
     protected HttpClientFactory mockHttpClientFactory;
     protected MessageSigner mockMessageSigner;
     protected HttpClient mockHttpClient;
-    protected TypeSafePropertyFetcher mockTypeSafePropertyFetcher;
+    protected PropertyFetcher mockPropertyFetcher;
     protected HttpResponse mockHttpResponse;
 
     public abstract AbstractPostingCoffeeStatusProcessor getCoffeeStatusProcessor();
@@ -53,8 +54,8 @@ public abstract class AbstractPostingCoffeeStatusProcessorTest {
         mockHttpClient = mock(HttpClient.class);
         when(mockHttpClientFactory.create()).thenReturn(mockHttpClient);
 
-        mockTypeSafePropertyFetcher = mock(TypeSafePropertyFetcher.class);
-        when(mockTypeSafePropertyFetcher.getValue(anyString(), anyString())).thenReturn(HTTP_FAKE_UPDATE_URL_COM);
+        mockPropertyFetcher = mock(PropertyFetcher.class);
+        when(mockPropertyFetcher.getValue(anyString(), anyString())).thenReturn(HTTP_FAKE_UPDATE_URL_COM);
 
         mockHttpResponse = mock(HttpResponse.class);
         when(mockHttpClient.execute(Matchers.<HttpUriRequest>any())).thenReturn(mockHttpResponse);

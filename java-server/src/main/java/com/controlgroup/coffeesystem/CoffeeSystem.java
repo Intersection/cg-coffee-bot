@@ -1,9 +1,12 @@
 package com.controlgroup.coffeesystem;
 
-import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
+import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.exceptions.ScaleNotFoundException;
 import com.controlgroup.coffeesystem.interfaces.*;
-import com.controlgroup.coffeesystem.processors.*;
+import com.controlgroup.coffeesystem.processors.GMailCoffeeBrewedEventProcessor;
+import com.controlgroup.coffeesystem.processors.GoogleAppEngineCoffeeStatusProcessor;
+import com.controlgroup.coffeesystem.processors.SlackCoffeeBrewedEventProcessor;
+import com.controlgroup.coffeesystem.processors.TwitterCoffeeStatusProcessor;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.jcabi.manifests.Manifests;
@@ -107,7 +110,7 @@ public class CoffeeSystem {
 
     private static void bindSlackCoffeeBrewedEventProcessorIfNecessary(Injector injector) {
         // Does the webhook URL exist?
-        if (configurationValueExists(SlackCoffeeBrewedEventProcessor.HEADER, SlackCoffeeBrewedEventProcessor.WEBHOOK_URL)) {
+        if (configurationValueExists(injector, SlackCoffeeBrewedEventProcessor.HEADER, SlackCoffeeBrewedEventProcessor.WEBHOOK_URL)) {
             // Yes, use the Slack processor
             injector.getInstance(SlackCoffeeBrewedEventProcessor.class);
             logger.info("Ready to send messages to Slack");
@@ -116,7 +119,7 @@ public class CoffeeSystem {
 
     private static void bindGMailCoffeeBrewedEventProcessorIfNecessary(Injector injector) {
         // Does the application specific password exist?
-        if (configurationValueExists(GMailCoffeeBrewedEventProcessor.HEADER, GMailCoffeeBrewedEventProcessor.PASSWORD_NAME)) {
+        if (configurationValueExists(injector, GMailCoffeeBrewedEventProcessor.HEADER, GMailCoffeeBrewedEventProcessor.PASSWORD_NAME)) {
             // Yes, use the GMail processor
             injector.getInstance(GMailCoffeeBrewedEventProcessor.class);
             logger.info("Ready to send messages to GMail");
@@ -125,20 +128,20 @@ public class CoffeeSystem {
 
     private static void bindTwitterCoffeeStatusProcessorIfNecessary(Injector injector) {
         // Do all the OAuth values exist in the configuration files or in the environment?
-        if (configurationValueExists(TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_CONSUMER_KEY) &&
-                configurationValueExists(TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_CONSUMER_SECRET) &&
-                configurationValueExists(TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_ACCESS_TOKEN) &&
-                configurationValueExists(TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_ACCESS_TOKEN_SECRET)) {
+        if (configurationValueExists(injector, TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_CONSUMER_KEY) &&
+                configurationValueExists(injector, TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_CONSUMER_SECRET) &&
+                configurationValueExists(injector, TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_ACCESS_TOKEN) &&
+                configurationValueExists(injector, TwitterCoffeeStatusProcessor.HEADER, TwitterCoffeeStatusProcessor.OAUTH_ACCESS_TOKEN_SECRET)) {
             // Yes, use the Twitter processor
             injector.getInstance(TwitterCoffeeStatusProcessor.class);
             logger.info("Ready to send messages to Twitter");
         }
     }
 
-    private static boolean configurationValueExists(String header, String name) {
-        TypeSafePropertyFetcher typeSafePropertyFetcher = new TypeSafePropertyFetcher();
+    private static boolean configurationValueExists(Injector injector, String header, String name) {
+        PropertyFetcher propertyFetcher = injector.getInstance(PropertyFetcher.class);
 
         // Return true if a value exists for the property with the given header and name
-        return typeSafePropertyFetcher.getValue(header, name) != null;
+        return propertyFetcher.getValue(header, name) != null;
     }
 }

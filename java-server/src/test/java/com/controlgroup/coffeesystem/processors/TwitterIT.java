@@ -1,6 +1,7 @@
 package com.controlgroup.coffeesystem.processors;
 
 import com.controlgroup.coffeesystem.TestHelpers;
+import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.generators.BasicTweetGenerator;
 import org.junit.Before;
@@ -10,13 +11,13 @@ import org.junit.Before;
  */
 public class TwitterIT {
     private TwitterCoffeeStatusProcessor twitterCoffeeStatusProcessor;
-    private TypeSafePropertyFetcher typeSafePropertyFetcher;
+    private PropertyFetcher propertyFetcher;
 
     @Before
     public void setup() {
-        typeSafePropertyFetcher = new TypeSafePropertyFetcher();
+        propertyFetcher = new TypeSafePropertyFetcher();
         BasicTweetGenerator tweetGenerator = new BasicTweetGenerator(TestHelpers.getMockTimestampGenerator());
-        twitterCoffeeStatusProcessor = new TwitterCoffeeStatusProcessor(typeSafePropertyFetcher, tweetGenerator);
+        twitterCoffeeStatusProcessor = new TwitterCoffeeStatusProcessor(propertyFetcher, tweetGenerator);
     }
 
     // TODO - Write some clever tests here

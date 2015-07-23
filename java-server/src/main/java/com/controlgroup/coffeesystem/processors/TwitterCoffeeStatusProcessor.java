@@ -1,6 +1,7 @@
 package com.controlgroup.coffeesystem.processors;
 
 import com.controlgroup.coffeesystem.CoffeeStatus;
+import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.generators.interfaces.TweetGenerator;
 import com.google.inject.Inject;
@@ -16,7 +17,7 @@ import twitter4j.conf.ConfigurationBuilder;
  * Created by timmattison on 12/29/14.
  */
 public class TwitterCoffeeStatusProcessor extends AbstractCoffeeStatusProcessor {
-    private final TypeSafePropertyFetcher typeSafePropertyFetcher;
+    private final PropertyFetcher propertyFetcher;
     private final TweetGenerator tweetGenerator;
     private final Logger logger = LoggerFactory.getLogger(AbstractCoffeeStatusProcessor.class);
     public static final String HEADER = "Twitter";
@@ -26,8 +27,8 @@ public class TwitterCoffeeStatusProcessor extends AbstractCoffeeStatusProcessor 
     public static final String OAUTH_ACCESS_TOKEN_SECRET = "oauth_access_token_secret";
 
     @Inject
-    public TwitterCoffeeStatusProcessor(TypeSafePropertyFetcher typeSafePropertyFetcher, TweetGenerator tweetGenerator) {
-        this.typeSafePropertyFetcher = typeSafePropertyFetcher;
+    public TwitterCoffeeStatusProcessor(PropertyFetcher propertyFetcher, TweetGenerator tweetGenerator) {
+        this.propertyFetcher = propertyFetcher;
         this.tweetGenerator = tweetGenerator;
     }
 
@@ -44,10 +45,10 @@ public class TwitterCoffeeStatusProcessor extends AbstractCoffeeStatusProcessor 
     private void updateStatus(String statusString) throws TwitterException {
         // NOTE: Configuration builder is final and cannot be mocked by Mockito
         ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setOAuthConsumerKey(typeSafePropertyFetcher.getValue(HEADER, OAUTH_CONSUMER_KEY))
-                .setOAuthConsumerSecret(typeSafePropertyFetcher.getValue(HEADER, OAUTH_CONSUMER_SECRET))
-                .setOAuthAccessToken(typeSafePropertyFetcher.getValue(HEADER, OAUTH_ACCESS_TOKEN))
-                .setOAuthAccessTokenSecret(typeSafePropertyFetcher.getValue(HEADER, OAUTH_ACCESS_TOKEN_SECRET));
+        cb.setOAuthConsumerKey(propertyFetcher.getValue(HEADER, OAUTH_CONSUMER_KEY))
+                .setOAuthConsumerSecret(propertyFetcher.getValue(HEADER, OAUTH_CONSUMER_SECRET))
+                .setOAuthAccessToken(propertyFetcher.getValue(HEADER, OAUTH_ACCESS_TOKEN))
+                .setOAuthAccessTokenSecret(propertyFetcher.getValue(HEADER, OAUTH_ACCESS_TOKEN_SECRET));
 
         // NOTE: TwitterFactory is final and cannot be mocked by Mockito
         TwitterFactory tf = new TwitterFactory(cb.build());

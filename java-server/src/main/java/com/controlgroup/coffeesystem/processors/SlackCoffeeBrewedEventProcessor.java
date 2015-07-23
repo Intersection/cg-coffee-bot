@@ -1,5 +1,6 @@
 package com.controlgroup.coffeesystem.processors;
 
+import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.events.CoffeeBrewedEvent;
 import com.controlgroup.coffeesystem.generators.interfaces.EmailGenerator;
@@ -23,22 +24,22 @@ import java.util.Map;
  */
 public class SlackCoffeeBrewedEventProcessor {
     private final Logger logger = LoggerFactory.getLogger(SlackCoffeeBrewedEventProcessor.class);
-    private final TypeSafePropertyFetcher typeSafePropertyFetcher;
+    private final PropertyFetcher propertyFetcher;
     private final EmailGenerator emailGenerator;
     private final HttpClientFactory httpClientFactory;
     public static final String HEADER = "Slack";
     public static final String WEBHOOK_URL = "webhookUrl";
 
     @Inject
-    protected SlackCoffeeBrewedEventProcessor(TypeSafePropertyFetcher typeSafePropertyFetcher, EmailGenerator emailGenerator, HttpClientFactory httpClientFactory) {
-        this.typeSafePropertyFetcher = typeSafePropertyFetcher;
+    protected SlackCoffeeBrewedEventProcessor(PropertyFetcher propertyFetcher, EmailGenerator emailGenerator, HttpClientFactory httpClientFactory) {
+        this.propertyFetcher = propertyFetcher;
         this.emailGenerator = emailGenerator;
         this.httpClientFactory = httpClientFactory;
     }
 
     @Subscribe
     public synchronized void coffeeBrewedEvent(CoffeeBrewedEvent coffeeBrewedEvent) throws MessagingException, IOException {
-        String webhookUrl = typeSafePropertyFetcher.getValue(HEADER, WEBHOOK_URL);
+        String webhookUrl = propertyFetcher.getValue(HEADER, WEBHOOK_URL);
 
         HttpClient httpClient = httpClientFactory.create();
         HttpPost httpPost = new HttpPost(webhookUrl);

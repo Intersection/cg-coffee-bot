@@ -1,5 +1,6 @@
 package com.controlgroup.coffeesystem.processors;
 
+import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.events.CoffeeBrewedEvent;
 import com.controlgroup.coffeesystem.generators.interfaces.EmailGenerator;
@@ -21,7 +22,7 @@ import java.util.Properties;
  */
 public class GMailCoffeeBrewedEventProcessor {
     private final Logger logger = LoggerFactory.getLogger(GMailCoffeeBrewedEventProcessor.class);
-    private final TypeSafePropertyFetcher typeSafePropertyFetcher;
+    private final PropertyFetcher propertyFetcher;
     private final EmailGenerator emailGenerator;
     public static final String HEADER = "Gmail";
     public static final String PASSWORD_NAME = "password";
@@ -29,8 +30,8 @@ public class GMailCoffeeBrewedEventProcessor {
     public static final String SOURCE_NAME = "source";
 
     @Inject
-    protected GMailCoffeeBrewedEventProcessor(TypeSafePropertyFetcher typeSafePropertyFetcher, EmailGenerator emailGenerator) {
-        this.typeSafePropertyFetcher = typeSafePropertyFetcher;
+    protected GMailCoffeeBrewedEventProcessor(PropertyFetcher propertyFetcher, EmailGenerator emailGenerator) {
+        this.propertyFetcher = propertyFetcher;
         this.emailGenerator = emailGenerator;
     }
 
@@ -44,13 +45,13 @@ public class GMailCoffeeBrewedEventProcessor {
         // TODO: Session is final and cannot be mocked by Mockito
         Session session = Session.getInstance(mailServerProperties, null);
         MimeMessage mimeMessage = new MimeMessage(session);
-        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(typeSafePropertyFetcher.getValue(HEADER, RECIPIENT_NAME)));
+        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(propertyFetcher.getValue(HEADER, RECIPIENT_NAME)));
         mimeMessage.setSubject(emailGenerator.generateSubject(coffeeBrewedEvent));
         mimeMessage.setContent(emailGenerator.generateBody(coffeeBrewedEvent), "text/html");
 
         Transport transport = session.getTransport("smtp");
 
-        transport.connect("smtp.gmail.com", typeSafePropertyFetcher.getValue(HEADER, SOURCE_NAME), typeSafePropertyFetcher.getValue(HEADER, PASSWORD_NAME));
+        transport.connect("smtp.gmail.com", propertyFetcher.getValue(HEADER, SOURCE_NAME), propertyFetcher.getValue(HEADER, PASSWORD_NAME));
         transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
         transport.close();
 

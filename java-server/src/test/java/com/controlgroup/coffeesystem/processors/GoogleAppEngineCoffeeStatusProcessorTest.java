@@ -7,6 +7,6 @@ public class GoogleAppEngineCoffeeStatusProcessorTest extends AbstractPostingCof
     @Override
     public AbstractPostingCoffeeStatusProcessor getCoffeeStatusProcessor() {
         setHttpResponseCode(204);
-        return new GoogleAppEngineCoffeeStatusProcessor(mockTypeSafePropertyFetcher, mockHttpClientFactory, mockMessageSigner);
+        return new GoogleAppEngineCoffeeStatusProcessor(mockPropertyFetcher, mockHttpClientFactory, mockMessageSigner);
     }
 }

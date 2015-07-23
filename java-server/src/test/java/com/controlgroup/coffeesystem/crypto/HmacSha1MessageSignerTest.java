@@ -1,5 +1,6 @@
 package com.controlgroup.coffeesystem.crypto;
 
+import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,7 +25,7 @@ public class HmacSha1MessageSignerTest {
 
     @Before
     public void setup() {
-        TypeSafePropertyFetcher mockPropertyFetcher = mock(TypeSafePropertyFetcher.class);
+        PropertyFetcher mockPropertyFetcher = mock(TypeSafePropertyFetcher.class);
         when(mockPropertyFetcher.getValue(Matchers.anyString(), Matchers.anyString())).thenReturn(KEY);
         messageSigner = new HmacSha1MessageSigner(mockPropertyFetcher);
     }

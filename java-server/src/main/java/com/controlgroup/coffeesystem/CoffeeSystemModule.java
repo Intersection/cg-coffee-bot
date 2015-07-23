@@ -47,6 +47,9 @@ public class CoffeeSystemModule extends AbstractModule {
 
     @Override
     protected void configure() {
+        // Use the TypeSafe property fetcher
+        bind(PropertyFetcher.class).to(TypeSafePropertyFetcher.class);
+
         // Use a Guava event bus
         bind(EventBus.class).toInstance(eventBus);
 
