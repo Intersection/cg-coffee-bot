@@ -4,18 +4,12 @@ import com.controlgroup.coffeesystem.CoffeeStatus;
 import com.controlgroup.coffeesystem.crypto.MessageSigner;
 import com.controlgroup.coffeesystem.interfaces.HttpClientFactory;
 import com.google.inject.Inject;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.security.SignatureException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

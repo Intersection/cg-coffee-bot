@@ -5,10 +5,6 @@ import com.controlgroup.coffeesystem.generators.interfaces.TimestampGenerator;
 import com.controlgroup.coffeesystem.generators.interfaces.TweetGenerator;
 import com.google.inject.Inject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 /**
  * Created by timmattison on 1/9/15.
  */

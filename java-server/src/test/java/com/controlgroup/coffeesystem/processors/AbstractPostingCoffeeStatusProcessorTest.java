@@ -2,7 +2,6 @@ package com.controlgroup.coffeesystem.processors;
 
 import com.controlgroup.coffeesystem.CoffeeStatus;
 import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
-import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.crypto.MessageSigner;
 import com.controlgroup.coffeesystem.events.HeartbeatEvent;
 import com.controlgroup.coffeesystem.interfaces.HttpClientFactory;

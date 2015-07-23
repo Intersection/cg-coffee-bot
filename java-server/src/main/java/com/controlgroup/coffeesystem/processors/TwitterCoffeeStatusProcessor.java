@@ -2,7 +2,6 @@ package com.controlgroup.coffeesystem.processors;
 
 import com.controlgroup.coffeesystem.CoffeeStatus;
 import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
-import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.generators.interfaces.TweetGenerator;
 import com.google.inject.Inject;
 import org.slf4j.Logger;

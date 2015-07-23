@@ -1,7 +1,6 @@
 package com.controlgroup.coffeesystem.processors;
 
 import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
-import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import com.controlgroup.coffeesystem.events.CoffeeBrewedEvent;
 import com.controlgroup.coffeesystem.generators.interfaces.EmailGenerator;
 import com.google.common.eventbus.Subscribe;
