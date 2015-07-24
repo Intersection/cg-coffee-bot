@@ -10,12 +10,16 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let configPlistName = "Config"
+    let apiEndpointConfigKeyName = "API endpoint"
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     var refreshTimer:NSTimer?
+    var endpointUrl:String?
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         loadButtonIcon()
         createMenu()
+        populateEndpointUrl()
         createRefreshTimer()
     }
     
@@ -31,6 +35,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Quit CoffeeBar", action: Selector("terminate:"), keyEquivalent: "q"))
         
         statusItem.menu = menu
+    }
+    
+    private func populateEndpointUrl() {
+        if let path = NSBundle.mainBundle().pathForResource(configPlistName, ofType: "plist") {
+            if let dict = NSDictionary(contentsOfFile: path) as? Dictionary<String, AnyObject> {
+                // TODO: Check if this is "CHANGEME" and remind the user to change it
+                endpointUrl = dict[apiEndpointConfigKeyName] as? String
+            }
+        }
     }
     
     private func createRefreshTimer() {
