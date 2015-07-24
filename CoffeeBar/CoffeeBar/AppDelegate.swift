@@ -19,11 +19,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named: "StatusBarButtonImage")
         }
     }
-
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
-    }
-
-
 }
 
