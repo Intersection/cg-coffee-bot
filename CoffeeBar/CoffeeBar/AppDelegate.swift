@@ -63,15 +63,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let endpointNSURL = NSURL(string: endpointUrl!) {
             var error: NSError?
-            let json = NSString(contentsOfURL: endpointNSURL, encoding: NSUTF8StringEncoding, error: &error) as! String
+            let json = NSString(contentsOfURL: endpointNSURL, encoding: NSUTF8StringEncoding, error: &error) as? String
             
             if let error = error {
                 // TODO: Do something clever here
+                println("Error: \(error)")
             } else {
-                processJson(json)
+                // Process the JSON
+                processJson(json!)
             }
         } else {
             // TODO: Do something clever here
+            println("Couldn't create endpointNSURL")
         }
     }
     
