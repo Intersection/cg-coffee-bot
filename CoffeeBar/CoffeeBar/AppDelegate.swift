@@ -11,10 +11,12 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
-
+    var refreshTimer:NSTimer?
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         loadButtonIcon()
         createMenu()
+        createRefreshTimer()
     }
     
     private func loadButtonIcon() {
@@ -29,6 +31,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Quit CoffeeBar", action: Selector("terminate:"), keyEquivalent: "q"))
         
         statusItem.menu = menu
+    }
+    
+    private func createRefreshTimer() {
+        refreshTimer = NSTimer(timeInterval: 0.5, target: self, selector: "refreshTimerFired", userInfo: nil, repeats: true)
+        
+        if refreshTimer != nil {
+            NSRunLoop.currentRunLoop().addTimer(refreshTimer!, forMode: NSRunLoopCommonModes)
+        }
+    }
+    
+    func refreshTimerFired() {
+        // TODO: JSON processing here
+        println("Timer fired")
     }
 }
 
