@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     let configPlistName = "Config"
     let apiEndpointConfigKeyName = "API endpoint"
+    let refreshIntervalInSeconds = 15.0
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     var refreshTimer:NSTimer?
     var endpointUrl:String?
@@ -47,7 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func createRefreshTimer() {
-        refreshTimer = NSTimer(timeInterval: 0.5, target: self, selector: "refreshTimerFired", userInfo: nil, repeats: true)
+        refreshTimer = NSTimer(timeInterval: refreshIntervalInSeconds, target: self, selector: "refreshTimerFired", userInfo: nil, repeats: true)
         
         if refreshTimer != nil {
             NSRunLoop.currentRunLoop().addTimer(refreshTimer!, forMode: NSRunLoopCommonModes)
