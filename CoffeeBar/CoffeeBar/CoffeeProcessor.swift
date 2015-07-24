@@ -9,31 +9,37 @@
 import Foundation
 
 class CoffeeProcessor {
-    func pollCoffeeUrl(endpointUrl: String?) {
+    func pollCoffeeUrl(endpointUrl: String?) -> AnyObject? {
         if endpointUrl == nil {
             // TODO: Do something clever here
-            return
+            return nil
         }
         
         if let endpointNSURL = NSURL(string: endpointUrl!) {
             var error: NSError?
-            let json = NSString(contentsOfURL: endpointNSURL, encoding: NSUTF8StringEncoding, error: &error) as? String
+            let json = NSString(contentsOfURL: endpointNSURL, encoding: NSUTF8StringEncoding, error: &error)
             
             if let error = error {
                 // TODO: Do something clever here
                 println("Error: \(error)")
             } else {
                 // Process the JSON
-                processJson(json!)
+                return processJson(json!)
             }
         } else {
             // TODO: Do something clever here
             println("Couldn't create endpointNSURL")
         }
+        
+        return nil
     }
     
-    private func processJson(json: String) {
-        // TODO: Process the JSON here
-        println("\(json)")
+    private func processJson(json: NSString) -> AnyObject? {
+        var parseError: NSError?
+        let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(json.dataUsingEncoding(NSUTF8StringEncoding)!,
+            options: NSJSONReadingOptions.AllowFragments,
+            error:&parseError)
+        
+        return parsedObject
     }
 }
