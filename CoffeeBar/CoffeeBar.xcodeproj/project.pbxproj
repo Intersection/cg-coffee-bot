@@ -396,6 +396,7 @@
 				619949001B628D7C00792800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		619949011B628D7C00792800 /* Build configuration list for PBXNativeTarget "CoffeeBarTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +405,7 @@
 				619949031B628D7C00792800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
