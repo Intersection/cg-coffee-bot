@@ -34,20 +34,24 @@ class CoffeeProcessor {
         return nil
     }
     
-    func carafePresent(input: AnyObject) -> Bool {
+    func carafePresent(input: AnyObject) -> Bool? {
         if let dictionary = input as? NSDictionary {
-            println("\(dictionary)")
+            if let carafePresent = dictionary["carafePresent"] as? Bool {
+                return carafePresent
+            }
         }
         
-        return false
+        return nil
     }
     
-    func cupsRemaining(input: AnyObject) -> Int {
+    func cupsRemaining(input: AnyObject) -> Int? {
         if let dictionary = input as? NSDictionary {
-            println("\(dictionary)")
+            if let cupsRemaining = dictionary["cupsRemaining"] as? Int {
+                return cupsRemaining
+            }
         }
         
-        return 0
+        return nil
     }
     
     private func processJson(json: NSString) -> AnyObject? {
