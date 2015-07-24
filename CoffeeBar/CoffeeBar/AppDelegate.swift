@@ -18,6 +18,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusItem.button {
             button.image = NSImage(named: "StatusBarButtonImage")
         }
+        
+        let menu = NSMenu()
+        
+        menu.addItem(NSMenuItem(title: "Quit CoffeeBar", action: Selector("terminate:"), keyEquivalent: "q"))
+        
+        statusItem.menu = menu
     }
 }
 
