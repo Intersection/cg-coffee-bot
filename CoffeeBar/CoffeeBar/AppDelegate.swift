@@ -19,6 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     var refreshTimer:NSTimer?
     var endpointUrl:String?
+    var coffeeCupImage:NSImage?
+    var noCarafeImage:NSImage?
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         loadButtonIcon()
@@ -28,8 +30,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func loadButtonIcon() {
-        if let button = statusItem.button {
-            button.image = NSImage(named: "StatusBarButtonImage")
+        coffeeCupImage = NSImage(named: "StatusBarButtonImage")!
+        noCarafeImage = NSImage(named: "NoCarafe")
+        
+        updateButtonImage(coffeeCupImage)
+    }
+    
+    private func updateButtonImage(input: NSImage!) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if let button = self.statusItem.button {
+                button.image = input
+            }
         }
     }
     
