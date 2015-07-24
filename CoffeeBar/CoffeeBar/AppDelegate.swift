@@ -22,16 +22,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var coffeeCupImage:NSImage?
     var noCarafeImage:NSImage?
     
+    var coffeeCupImages = [NSImage]()
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        loadButtonIcon()
+        loadButtonIcons()
         createMenu()
         populateEndpointUrl()
         createRefreshTimer()
     }
     
-    private func loadButtonIcon() {
+    private func loadButtonIcons() {
         coffeeCupImage = NSImage(named: "StatusBarButtonImage")!
         noCarafeImage = NSImage(named: "NoCarafe")
+        
+        coffeeCupImages.append(coffeeCupImage!)
+        coffeeCupImages.append(NSImage(named: "1Cup")!)
+        coffeeCupImages.append(NSImage(named: "2Cups")!)
+        coffeeCupImages.append(NSImage(named: "3Cups")!)
+        coffeeCupImages.append(NSImage(named: "4Cups")!)
+        coffeeCupImages.append(NSImage(named: "5Cups")!)
+        coffeeCupImages.append(NSImage(named: "6Cups")!)
+        coffeeCupImages.append(NSImage(named: "7Cups")!)
+        coffeeCupImages.append(NSImage(named: "8Cups")!)
+        coffeeCupImages.append(NSImage(named: "9Cups")!)
+        coffeeCupImages.append(NSImage(named: "10Cups")!)
         
         updateButtonImage(coffeeCupImage)
     }
@@ -79,11 +93,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let carafePresent = coffeeProcessor.carafePresent(result!)
         
-        if !carafePresent {
+        if carafePresent == false {
             updateButtonImage(noCarafeImage)
+            return
         }
         
-        let cupsRemaining = coffeeProcessor.cupsRemaining(result!)
+        if let cupsRemaining = coffeeProcessor.cupsRemaining(result!) {
+            let clampedCupsRemaining = max(0, min(10, cupsRemaining))
+            
+            updateButtonImage(coffeeCupImages[clampedCupsRemaining])
+        }
     }
 }
 
