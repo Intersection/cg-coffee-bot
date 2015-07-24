@@ -59,7 +59,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func refreshTimerFired() {
-        coffeeProcessor.pollCoffeeUrl(endpointUrl)
+        let result = coffeeProcessor.pollCoffeeUrl(endpointUrl)
+        
+        if result == nil {
+            // TODO: Eventually let the user know that the coffee status is invalid
+            return
+        }
     }
 }
 
