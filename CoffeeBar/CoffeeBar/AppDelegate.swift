@@ -15,10 +15,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        loadButtonIcon()
+        createMenu()
+    }
+    
+    private func loadButtonIcon() {
         if let button = statusItem.button {
             button.image = NSImage(named: "StatusBarButtonImage")
         }
-        
+    }
+    
+    private func createMenu() {
         let menu = NSMenu()
         
         menu.addItem(NSMenuItem(title: "Quit CoffeeBar", action: Selector("terminate:"), keyEquivalent: "q"))
