@@ -13,6 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let configPlistName = "Config"
     let apiEndpointConfigKeyName = "API endpoint"
     let refreshIntervalInSeconds = 15.0
+    
+    let coffeeProcessor = CoffeeProcessor()
+    
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     var refreshTimer:NSTimer?
     var endpointUrl:String?
@@ -56,31 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func refreshTimerFired() {
-        if endpointUrl == nil {
-            // TODO: Do something clever here
-            return
-        }
-        
-        if let endpointNSURL = NSURL(string: endpointUrl!) {
-            var error: NSError?
-            let json = NSString(contentsOfURL: endpointNSURL, encoding: NSUTF8StringEncoding, error: &error) as? String
-            
-            if let error = error {
-                // TODO: Do something clever here
-                println("Error: \(error)")
-            } else {
-                // Process the JSON
-                processJson(json!)
-            }
-        } else {
-            // TODO: Do something clever here
-            println("Couldn't create endpointNSURL")
-        }
-    }
-    
-    private func processJson(json: String) {
-        // TODO: Process the JSON here
-        println("\(json)")
+        coffeeProcessor.pollCoffeeUrl(endpointUrl)
     }
 }
 
