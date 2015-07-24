@@ -34,6 +34,22 @@ class CoffeeProcessor {
         return nil
     }
     
+    func carafePresent(input: AnyObject) -> Bool {
+        if let dictionary = input as? NSDictionary {
+            println("\(dictionary)")
+        }
+        
+        return false
+    }
+    
+    func cupsRemaining(input: AnyObject) -> Int {
+        if let dictionary = input as? NSDictionary {
+            println("\(dictionary)")
+        }
+        
+        return 0
+    }
+    
     private func processJson(json: NSString) -> AnyObject? {
         var parseError: NSError?
         let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(json.dataUsingEncoding(NSUTF8StringEncoding)!,
