@@ -55,8 +55,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func refreshTimerFired() {
-        // TODO: JSON processing here
-        println("Timer fired")
+        if endpointUrl == nil {
+            // TODO: Do something clever here
+            return
+        }
+        
+        if let endpointNSURL = NSURL(string: endpointUrl!) {
+            var error: NSError?
+            let json = NSString(contentsOfURL: endpointNSURL, encoding: NSUTF8StringEncoding, error: &error) as! String
+            
+            if let error = error {
+                // TODO: Do something clever here
+            } else {
+                processJson(json)
+            }
+        } else {
+            // TODO: Do something clever here
+        }
+    }
+    
+    private func processJson(json: String) {
+        // TODO: Process the JSON here
+        println("\(json)")
     }
 }
 
