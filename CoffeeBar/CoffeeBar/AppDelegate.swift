@@ -12,8 +12,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
 
-    @IBOutlet weak var window: NSWindow!
-
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         loadButtonIcon()
         createMenu()
