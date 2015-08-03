@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.inject.Inject;
 import java.security.SignatureException;
 
 public class HmacSha1MessageSigner implements MessageSigner {
@@ -14,6 +15,7 @@ public class HmacSha1MessageSigner implements MessageSigner {
     private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
     private final PropertyFetcher propertyFetcher;
 
+    @Inject
     public HmacSha1MessageSigner(PropertyFetcher propertyFetcher) {
         // TODO: This is cleaner if we just pass in the key
         this.propertyFetcher = propertyFetcher;
