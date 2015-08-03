@@ -2,6 +2,8 @@ package com.controlgroup.coffeesystem;
 
 import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
+import com.controlgroup.coffeesystem.crypto.HmacSha1MessageSigner;
+import com.controlgroup.coffeesystem.crypto.MessageSigner;
 import com.controlgroup.coffeesystem.events.BasicScaleReadEvent;
 import com.controlgroup.coffeesystem.events.BasicStableScaleReadEvent;
 import com.controlgroup.coffeesystem.events.HeartbeatEvent;
@@ -49,6 +51,9 @@ public class CoffeeSystemModule extends AbstractModule {
     protected void configure() {
         // Use the TypeSafe property fetcher
         bind(PropertyFetcher.class).to(TypeSafePropertyFetcher.class);
+
+        // Use the HMAC signer
+        bind(MessageSigner.class).to(HmacSha1MessageSigner.class);
 
         // Use a Guava event bus
         bind(EventBus.class).toInstance(eventBus);
