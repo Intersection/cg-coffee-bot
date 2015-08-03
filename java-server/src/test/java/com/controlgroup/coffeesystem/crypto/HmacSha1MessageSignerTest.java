@@ -1,5 +1,6 @@
 package com.controlgroup.coffeesystem.crypto;
 
+import com.controlgroup.coffeesystem.CoffeeStatus;
 import com.controlgroup.coffeesystem.configuration.PropertyFetcher;
 import com.controlgroup.coffeesystem.configuration.TypeSafePropertyFetcher;
 import org.junit.Assert;
@@ -32,5 +33,18 @@ public class HmacSha1MessageSignerTest {
     @Test
     public void shouldReturnCorrectHmac() throws SignatureException {
         Assert.assertThat(messageSigner.calculateSignature(data1), is(hashedData1));
+    }
+
+    @Test
+    public void shouldReturnCorrectHmacForCoffeeStatusObject() throws SignatureException {
+        CoffeeStatus coffeeStatus = new CoffeeStatus();
+        coffeeStatus.lastBrewed = 0;
+        coffeeStatus.cupsRemaining = 3;
+        coffeeStatus.carafePresent = false;
+
+        String data = coffeeStatus.toString();
+        String hmac = messageSigner.calculateSignature(data);
+
+        Assert.assertThat(hmac, is("59eb266f831a3c2191f46a2c834db0ffdec463aa"));
     }
 }
