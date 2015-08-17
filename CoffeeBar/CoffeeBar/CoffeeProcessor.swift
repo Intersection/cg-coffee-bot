@@ -44,6 +44,16 @@ class CoffeeProcessor {
         return nil
     }
     
+    func lastBrewed(input: AnyObject) -> Int? {
+        if let dictionary = input as? NSDictionary {
+            if let lastBrewed = dictionary["lastBrewed"] as? Int {
+                return lastBrewed
+            }
+        }
+        
+        return nil
+    }
+    
     func cupsRemaining(input: AnyObject) -> Int? {
         if let dictionary = input as? NSDictionary {
             if let cupsRemaining = dictionary["cupsRemaining"] as? Int {

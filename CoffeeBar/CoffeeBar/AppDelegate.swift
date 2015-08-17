@@ -24,6 +24,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var coffeeCupImages = [NSImage]()
     
+    var statusBarItem: NSStatusItem = NSStatusItem()
+    var menu: NSMenu = NSMenu()
+    var toolTip: NSMenuItem = NSMenuItem()
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         loadButtonIcons()
         createMenu()
@@ -61,6 +65,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func createMenu() {
         let menu = NSMenu()
         
+        toolTip.title = "Checking with the bot..."
+        toolTip.keyEquivalent = ""
+        
+        menu.addItem(toolTip)
         menu.addItem(NSMenuItem(title: "Quit CoffeeBar", action: Selector("terminate:"), keyEquivalent: "q"))
         
         statusItem.menu = menu
@@ -95,14 +103,88 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if carafePresent == false {
             updateButtonImage(noCarafeImage)
+            toolTip.title = "\(getTime()): No carafe present"
             return
         }
         
         if let cupsRemaining = coffeeProcessor.cupsRemaining(result!) {
             let clampedCupsRemaining = max(0, min(10, cupsRemaining))
+            let lastBrewed = coffeeProcessor.lastBrewed(result!)
             
             updateButtonImage(coffeeCupImages[clampedCupsRemaining])
+            
+            if(clampedCupsRemaining == 1) {
+                toolTip.title = "\(getTime()): 1 cup remaining, \(getBrewedTime(lastBrewed))"
+            }
+            else {
+                toolTip.title = "\(getTime()): \(clampedCupsRemaining) cups remaining, \(getBrewedTime(lastBrewed))"
+            }
         }
     }
+    
+    private func getTime() -> String {
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: date)
+        let hour = components.hour
+        let minutes = components.minute
+        
+        return "\(hour):\(minutes)"
+    }
+    
+    private func getBrewedTime(brewedTime: Int?) -> String {
+        if (brewedTime == nil) {
+            return "no brew time available"
+        }
+        
+        if brewedTime < 0 {
+            return "not sure when it was brewed"
+        }
+        
+        let date = NSDate().timeIntervalSince1970
+        let epoch = Int(round(date) * 1000)
+        var difference = epoch - brewedTime!
+        
+        let days = difference / 86400000
+        difference = difference % 86400000
+        let hours = difference / 3600000
+        difference = difference % 3600000
+        let minutes = difference / 60000
+        
+        var result = "brewed "
+        var separator = ""
+        
+        if days > 0 {
+            result += "\(separator)\(days) day"
+            
+            if days != 1 {
+            result += "s"
+            }
+            
+            separator = ", "
+        }
+        
+        if hours > 0 {
+            result += "\(separator)\(hours) hour"
+            
+            if hours != 1 {
+                result += "s"
+            }
+            
+            separator = ", "
+        }
+        
+        if minutes > 0 {
+            result += "\(separator)\(minutes) minute"
+            
+            if minutes != 1 {
+                result += "s"
+            }
+            
+            separator = ", "
+        }
+        
+        result += " ago"
+        return result
+    }
 }
-
