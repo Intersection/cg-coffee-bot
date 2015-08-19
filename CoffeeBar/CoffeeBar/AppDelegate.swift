@@ -126,8 +126,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: date)
-        let hour = components.hour
-        let minutes = components.minute
+        let hour = String(format: "%02d", components.hour)
+        let minutes = String(format: "%02d", components.minute)
         
         return "\(hour):\(minutes)"
     }
