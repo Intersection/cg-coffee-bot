@@ -151,6 +151,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         difference = difference % 3600000
         let minutes = difference / 60000
         
+        if (days == 0) && (hours == 0) && (minutes == 0) {
+            return "just brewed"
+        }
+        
         var result = "brewed "
         var separator = ""
         
