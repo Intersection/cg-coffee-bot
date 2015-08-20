@@ -126,10 +126,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: date)
-        let hour = String(format: "%02d", components.hour)
+        
+        let ampm = (components.hour >= 12) ? "PM" : "AM"
+        let hourNumber = (components.hour > 12) ? components.hour - 12 : components.hour
+        
+        let hour = String(format: "%02d", hourNumber)
         let minutes = String(format: "%02d", components.minute)
         
-        return "\(hour):\(minutes)"
+        return "\(hour):\(minutes) \(ampm)"
     }
     
     private func getBrewedTime(brewedTime: Int?) -> String {
