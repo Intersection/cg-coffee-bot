@@ -12,10 +12,11 @@ Monitor your coffee pot with Google App Engine, send e-mail/Slack/Twitter notifi
 
 ## Project structure
 
-This system consists of two parts.
+This system consists of three parts.
 
   - java-server - This runs on the computer hooked up to the scale.  We use a Raspberry Pi and works great for us.
   - gae-server - This runs on Google App Engine and serves up the HTML/Javascript user interfaces and provides an endpoint for other applications to fetch the coffee data as JSON
+  - CoffeeBar - A MacOS menu bar application that monitors the coffee pot status
 
 ## Getting started
 
