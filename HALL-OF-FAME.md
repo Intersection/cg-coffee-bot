@@ -12,3 +12,5 @@ Miguel Bermudez - Wrote the second coffee GUI (rain)
 Sara Hopper - Aided in finding the root cause of the mysterious "Did someone just pour their coffee back in the pot?" bug
 
 Michael Maeng - Aided in finding the root cause of the USB scale poweroff bug
+
+Jack Senechal - I believe that we used his USB scale reading Python script - https://gist.github.com/jacksenechal/5862530 - in our prototypes
